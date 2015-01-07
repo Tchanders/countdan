@@ -1,0 +1,94 @@
+.countdan-panel {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDDDDD;
+	margin: 10px;
+	padding: 10px;
+}
+
+.game-panel {
+	text-align: center;
+	height: 300px;
+}
+
+.clock-panel {
+	height: 300px;
+	/* To vertically center the 250px clock */
+	padding-top: 25px;
+}
+
+.clock-image {
+	display: block;
+	width: 250px;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.numbersgame-target {
+	display: inline-block;
+	width: 75px;
+	height: 50px;
+	padding: 5px;
+	color: #FFFFFF;
+	background-color: #0000FF;
+	font-size: 30px;
+}
+
+.tile-panel {
+	text-align: center;
+}
+
+.gamepage-tile {
+	display: inline-block;
+	width: 65px;
+	height: 65px;
+	color: #FFFFFF;
+	background-color: #0000FF;
+	font-size: 30px;
+	line-height: 65px;
+	margin: 20px 5px;
+}
+
+.numbersgame-setnumbers {
+	display: inline-block;
+	margin: 0px 5px;
+	padding: 5px;
+}
+
+.gamepage-button {
+	display: inline-block;
+	margin: 0px 5px;
+	padding: 5px 10px;
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #CCCCCC;
+	border-width: 1px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.gamepage-button:hover,
+.gamepage-button:focus,
+.gamepage-button:active,
+.gamepage-button.active,
+.open .dropdown-toggle.gamepage-button {
+	box-shadow: 0 0 5px;
+}
+
+.button-disabled {
+	color: #CCCCCC;
+	cursor: default;
+}
+
+.button-disabled:hover,
+.button-disabled:focus,
+.button-disabled:active,
+.button-disabled.active,
+.open .dropdown-toggle.button-disabled {
+	box-shadow: none;
+}
+
+.gamepage-solutions {
+	margin: 5px;
+}
