@@ -41,8 +41,8 @@
 	</div>
 </div>
 
-<script src="clock.js"></script>
+<script src="js/clock.js"></script>
 <!-- is this line needed? -->
-<script src="letters.js"></script>
-<script src="<?php echo $game . '.js';?>"></script>
-<script src="<?php echo $game . 'setup.js';?>"></script>
+<script src="js/letters.js"></script>
+<script src="js/<?php echo $game . '.js';?>"></script>
+<script src="js/<?php echo $game . 'setup.js';?>"></script>
