@@ -85,7 +85,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 				return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
 			}
 		}
-	}
+	};
 
 	function leafNode( usedNumberPositions, result ) {
 		this.usedNumberPositions = usedNumberPositions;
@@ -94,7 +94,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 
 	leafNode.prototype.toString = function() {
 		return '' + this.result;
-	}
+	};
 
 	function addBranchNode( firstNode, secondNode, targetArray, operator ) {
 		var newNode = new branchNode( firstNode, secondNode, operator );
@@ -160,7 +160,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 					// For commutative operators, can ditch everything where j >= i
 					if ( j < i ) {
 						addBranchNode( leftNode, rightNode, Operators.TIMES );
-						addBranchNode( leftNode, rightNode, Operators.ADD );	
+						addBranchNode( leftNode, rightNode, Operators.ADD );
 					}
 					// Intermediate result is not allowed to be a fraction
 					if ( leftNode.result % rightNode.result === 0 ) {
@@ -179,12 +179,12 @@ function solveNumbersGame( offeredNumbers, target ) {
 		}
 	}
 
-	var ones = []
-	var twos = []
-	var threes = []
-	var fours = []
-	var fives = []
-	var sixes = []
+	var ones = [],
+		twos = [],
+		threes = [],
+		fours = [],
+		fives = [],
+		sixes = [];
 
 	// Create ones, which is made of leafNodes
 	// This is currently hard-coded
@@ -218,8 +218,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 	createSubTree( twos, fours, sixes, true );
 	// createSymmetricalSubTree( threes, sixes, true );
 	createSubTree( threes, threes, sixes, true );
-	console.log( sixes.length );
+	//console.log( sixes.length );
 
 	return solutions;
-
 }

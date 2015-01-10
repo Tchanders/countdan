@@ -81,7 +81,7 @@ $( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', funct
 		// NB setup buttons are not actually disabled, but they don't do anything
 		$( '.setup-button' ).addClass( 'button-disabled' );
 		$( '.ingame-button' ).removeClass( 'button-disabled' );
-		setTimeout( startTimer, 1000);
+		setTimeout( Clock.start, 1000 );
 	}
 } );
 
