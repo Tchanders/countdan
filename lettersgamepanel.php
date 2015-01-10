@@ -10,6 +10,7 @@
 	<div class="gamepage-tile letter-7">&nbsp;</div>
 	<div class="gamepage-tile letter-8">&nbsp;</div>
 </div>
+To start the game, choose nine letters:<br>
 <div class="setup-button gamepage-button lettersgame-choosevowel">Vowel</div>
 <div class="setup-button gamepage-button lettersgame-chooseconsonant">Consonant</div>
 <div class="ingame-button gamepage-button lettersgame-newgame button-disabled">Start again</div>

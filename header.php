@@ -21,7 +21,7 @@
 	<div class="navbar navbar-default">
 		<div class="container">
 			<div class="navbar-left">
-				<a href="." class="navbar-brand">Countdan</a>
+				<a href="." class="navbar-brand">Countdan - a game of one half</a>
 			</div>
 			<div type="button" class="navbar-toggle" data-toggle="collapse" data-target=".menu-collapse">
 				<span class="sr-only">Toggle navigation</span>
