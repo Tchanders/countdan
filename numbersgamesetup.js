@@ -11,7 +11,7 @@ function startGame() {
 		$( '.number-' + i ).text( '\u00a0' );
 	}
 	$( '.setup-button' ).removeClass( 'button-disabled' );
-	$( '.lettersgame-newgame' ).removeClass( 'button-disabled' );
+	$( '.ingame-button' ).addClass( 'button-disabled' );
 	offeredNumbers = [];
 	target = null;
 	solutions = [];
@@ -22,6 +22,7 @@ $( '.numbersgame-setnumbers' ).on( 'click', function() {
 		return;
 	}
 	$( '.setup-button' ).addClass( 'button-disabled' );
+	$( '.ingame-button' ).removeClass( 'button-disabled' );
 	var highNumbersCopy = highNumbers.slice();
 	var lowNumbersCopy = lowNumbers.slice();
 	var numberOfHighs = + $( this ).data( 'value' );

@@ -42,10 +42,15 @@ var tileCounter;
 var offeredLetters;
 
 function startGame() {
-	// Need to reset timer
+	// TODO reset timer
 	$( '.gamepage-tile' ).text( '\u00a0' );
 	$( '.gamepage-solutions' ).empty();
+	// During setup:
+	// make setup buttons look enabled
+	// make inplay buttons look disabled
+	// NB inplay buttons are not actually disabled, but they don't do anything
 	$( '.setup-button' ).removeClass( 'button-disabled' );
+	$( '.ingame-button' ).addClass( 'button-disabled' );
 	// vowelsCopy is a shallow copy of vowels
 	vowelsCopy = vowels.slice();
 	consonantsCopy = consonants.slice();
@@ -70,8 +75,12 @@ $( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', funct
 	}
 	// Start the game automatically when all the tiles are full
 	if ( tileCounter === 9 ) {
-		// Make it look disabled
+		// During play:
+		// make setup buttons look disabled
+		// make inplay buttons look enabled
+		// NB setup buttons are not actually disabled, but they don't do anything
 		$( '.setup-button' ).addClass( 'button-disabled' );
+		$( '.ingame-button' ).removeClass( 'button-disabled' );
 		setTimeout( startTimer, 1000);
 	}
 } );

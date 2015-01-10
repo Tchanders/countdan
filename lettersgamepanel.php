@@ -12,4 +12,4 @@
 </div>
 <div class="setup-button gamepage-button lettersgame-choosevowel">Vowel</div>
 <div class="setup-button gamepage-button lettersgame-chooseconsonant">Consonant</div>
-<div class="gamepage-button lettersgame-newgame">Start again</div>
+<div class="ingame-button gamepage-button lettersgame-newgame button-disabled">Start again</div>

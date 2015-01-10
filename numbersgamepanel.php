@@ -8,12 +8,10 @@
 	<div class="gamepage-tile number-4"></div>
 	<div class="gamepage-tile number-5"></div>
 </div>
-Number of high numbers:
-<!-- <input type="number"
-	class="numbersgame-setnumbers" default="0" min="0" max="4" value="0"> -->
+To start the game, choose how many big numbers you want:<br>
 <div class="setup-button gamepage-button numbersgame-setnumbers" data-value="0">0</div>
 <div class="setup-button gamepage-button numbersgame-setnumbers" data-value="1">1</div>
 <div class="setup-button gamepage-button numbersgame-setnumbers" data-value="2">2</div>
 <div class="setup-button gamepage-button numbersgame-setnumbers" data-value="3">3</div>
 <div class="setup-button gamepage-button numbersgame-setnumbers" data-value="4">4</div>
-<div class="gamepage-button numbersgame-newgame">start again</div>
+<div class="ingame-button gamepage-button numbersgame-newgame button-disabled">start again</div>

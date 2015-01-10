@@ -47,7 +47,7 @@
 	background-color: #0000FF;
 	font-size: 30px;
 	line-height: 65px;
-	margin: 20px 5px;
+	margin: 10px 5px;
 }
 
 .numbersgame-setnumbers {
@@ -58,7 +58,7 @@
 
 .gamepage-button {
 	display: inline-block;
-	margin: 0px 5px;
+	margin: 10px 5px;
 	padding: 5px 10px;
 	background-color: #FFFFFF;
 	border-style: solid;
@@ -66,6 +66,9 @@
 	border-width: 1px;
 	border-radius: 10px;
 	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }
 
 .gamepage-button:hover,
