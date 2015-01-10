@@ -43,7 +43,7 @@ $( '.numbersgame-setnumbers' ).on( 'click', function() {
 	}
 	target = Math.floor( Math.random() * 899 ) + 101;
 	$( '.numbersgame-target' ).text( target );
-	setTimeout( startTimer, 1000 );
+	setTimeout( Clock.start, 1000 );
 } );
 
 $( '.numbersgame-newgame' ).on( 'click', startGame );
