@@ -40,9 +40,11 @@ var vowelsCopy;
 var consonantsCopy;
 var tileCounter;
 var offeredLetters;
+var clock = new Clock();
+$( '.clock-panel' ).append( clock.$element );
 
 function startGame() {
-	Clock.reset();
+	clock.reset();
 	$( '.gamepage-tile' ).text( '\u00a0' );
 	$( '.gamepage-solutions' ).empty();
 	// During setup:
@@ -81,7 +83,7 @@ $( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', funct
 		// NB setup buttons are not actually disabled, but they don't do anything
 		$( '.setup-button' ).addClass( 'button-disabled' );
 		$( '.ingame-button' ).removeClass( 'button-disabled' );
-		setTimeout( Clock.start, 1000 );
+		setTimeout( function () { clock.start(); }, 1000 );
 	}
 } );
 
