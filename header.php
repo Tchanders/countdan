@@ -37,6 +37,9 @@
 					<li>
 						<a href="numbers">Numbers</a>
 					</li>
+					<li>
+						<a href="conundrum">Conundrum</a>
+					</li>
 				</ul>
 			</div>
 		</div>
