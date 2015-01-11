@@ -4,8 +4,8 @@
 		clock = new Clock();
 
 	for ( i in wordlist ) {
-		if ( i.length === 9 ) {
-			nines = nines.concat( wordlist[i] );
+		if ( i.length === 9 && wordlist[i].length === 1 ) {
+			nines.push( wordlist[i][0] );
 		}
 	}
 
