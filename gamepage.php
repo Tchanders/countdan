@@ -30,8 +30,3 @@
 		</div>
 	</div>
 </div>
-
-<script src="js/clock.js"></script>
-<script src="js/letters.js"></script>
-<script src="js/<?php echo $game . '.js';?>"></script>
-<script src="js/<?php echo $game . 'setup.js';?>"></script>
