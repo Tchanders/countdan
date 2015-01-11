@@ -31,8 +31,14 @@ switch ( true ) {
 		include 'footer.php';
 		break;
 	case preg_match( '`/conundrum$`', $url ):
+		$game = 'conundrum';
+		$scripts = array(
+			'js/clock.js',
+			'js/letters.js',
+			'js/conundrumsetup.js',
+		);
 		include 'header.php';
-		include 'conundrum.php';
+		include 'gamepage.php';
 		include 'footer.php';
 		break;
 	case preg_match( '`/timestables$`', $url ):
