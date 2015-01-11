@@ -24,9 +24,8 @@ switch ( true ) {
 		include 'conundrum.php';
 		include 'footer.php';
 		break;
-	case preg_match( '`/timestables$`', $url ):
-		include 'header.php';
-		include 'timestables.php';
-		include 'footer.php';
+	default:
+		header( $_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found' );
+		echo 'Page not found';
 		break;
 }
