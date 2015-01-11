@@ -18,10 +18,10 @@
 
 <body>
 
-	<div class="navbar navbar-default">
+	<div class="navbar navbar-default countdan-navbar">
 		<div class="container">
 			<div class="navbar-left">
-				<a href="." class="navbar-brand">Countdan - a game of one half</a>
+				<a href="." class="navbar-brand">Countdan</a>
 			</div>
 			<div type="button" class="navbar-toggle" data-toggle="collapse" data-target=".menu-collapse">
 				<span class="sr-only">Toggle navigation</span>
@@ -37,15 +37,9 @@
 					<li>
 						<a href="numbers">Numbers</a>
 					</li>
-					<li>
-						<a href="conundrum">Conundrum</a>
-					</li>
-					<li>
-						<a href="#">Times tables</a>
-					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container countdan-container">
