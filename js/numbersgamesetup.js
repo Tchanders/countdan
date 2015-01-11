@@ -5,6 +5,7 @@ var target;
 var solutions;
 
 function startGame() {
+	Clock.reset();
 	$( '.gamepage-solutions' ).empty();
 	$( '.numbersgame-target' ).text( '\u00a0' );
 	for ( var i = 0; i < 6; i++ ) {
@@ -51,8 +52,12 @@ $( '.numbersgame-newgame' ).on( 'click', startGame );
 $( '.gamepage-showsolutions' ).on( 'click', function() {
 	$( '.gamepage-solutions' ).empty();
 	solutions = solveNumbersGame( offeredNumbers, target );
-	for ( var i = 0; i < solutions.length; i++ ) {
-		$( '.gamepage-solutions' ).append( $( '<div>' ).text( solutions[i] ) );
+	if ( solutions.length === 0 ) {
+		$( '.gamepage-solutions' ).append( $( '<p>' ).text( 'No solutions found' ) );
+	} else {
+		for ( var i = 0; i < solutions.length; i++ ) {
+			$( '.gamepage-solutions' ).append( $( '<div>' ).text( solutions[i] ) );
+		}
 	}
 } );
 

@@ -42,7 +42,7 @@ var tileCounter;
 var offeredLetters;
 
 function startGame() {
-	// TODO reset timer
+	Clock.reset();
 	$( '.gamepage-tile' ).text( '\u00a0' );
 	$( '.gamepage-solutions' ).empty();
 	// During setup:
@@ -88,19 +88,23 @@ $( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', funct
 $( '.gamepage-showsolutions' ).on( 'click', function() {
 	var subSolutions,
 		solutions = solveLettersGame( offeredLetters.join( '' ) );
-	for ( i = 9; i >= 5; i-- ) {
-		if ( solutions[i] ) {
-			subSolutions = solutions[i];
-			$( '.gamepage-solutions' ).append( $( '<h2>' ).text( i + ' letters' ) );
-			for ( j = 0; j < subSolutions.length; j++ ) {
-				$( '.gamepage-solutions' ).append(
-					$( '<div>' ).append(
-						$( '<a>' )
-							.attr( 'href', 'http://en.wiktionary.org/wiki/' + subSolutions[j] + '#English' )
-							.attr( 'target', '_blank' )
-							.text( subSolutions[j] )
-					)
-				);
+	if ( solutions.length === 0 ) {
+		$( '.gamepage-solutions' ).append( $( '<p>' ).text( 'No solutions found' ) );
+	} else {
+		for ( i = 9; i >= 5; i-- ) {
+			if ( solutions[i] ) {
+				subSolutions = solutions[i];
+				$( '.gamepage-solutions' ).append( $( '<h2>' ).text( i + ' letters' ) );
+				for ( j = 0; j < subSolutions.length; j++ ) {
+					$( '.gamepage-solutions' ).append(
+						$( '<div>' ).append(
+							$( '<a>' )
+								.attr( 'href', 'http://en.wiktionary.org/wiki/' + subSolutions[j] + '#English' )
+								.attr( 'target', '_blank' )
+								.text( subSolutions[j] )
+						)
+					);
+				}
 			}
 		}
 	}

@@ -1,12 +1,12 @@
 <div class="row">
-	<div class="col-sm-8">
+	<div class="col-md-8">
 		<div class="countdan-panel game-panel">
 			<?php
 				include $game . 'panel.php';
 			?>
 		</div>
 	</div>
-	<div class="col-sm-4">
+	<div class="col-md-4">
 		<div class="countdan-panel clock-panel">
 			<svg class="clock-image" viewbox="0 0 250 250">
 				<circle cx="125" cy="125" r="120" stroke="blue" stroke-width="10" fill="#ccc"/>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-8">
+	<div class="col-md-8">
 		<div class="countdan-panel rules-panel">
 			<h3>Rules</h3>
 			<ul>
@@ -32,7 +32,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="col-sm-4">
+	<div class="col-md-4">
 		<div class="countdan-panel solutions-panel">
 			<h3>Solutions</h3>
 			<div class="ingame-button gamepage-button gamepage-showsolutions button-disabled">Show solutions</div>
@@ -42,7 +42,6 @@
 </div>
 
 <script src="js/clock.js"></script>
-<!-- is this line needed? -->
 <script src="js/letters.js"></script>
 <script src="js/<?php echo $game . '.js';?>"></script>
 <script src="js/<?php echo $game . 'setup.js';?>"></script>
