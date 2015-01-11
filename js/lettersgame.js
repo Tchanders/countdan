@@ -10,6 +10,7 @@ function solveLettersGame( text ) {
 
 	function solve() {
 		var i, output = '', results = [];
+
 		findAna( text.toLowerCase().split( '' ).sort().join( '' ) );
 
 		function findAna( key ) {
