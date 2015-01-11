@@ -1,15 +1,15 @@
 function solveNumbersGame( offeredNumbers, target ) {
-	var n = offeredNumbers.length;
-	var Operators = {
-		TIMES: 0,
-		ADD: 1,
-		DIVIDE: 2,
-		MINUS: 3
-	};
-	var operatorStrings = ['\u00d7', '+', '\u00f7', '-'];
-	var solutions = [];
-	var usedBranch = {};
-	var usedSolution = {};
+	var n = offeredNumbers.length,
+		Operators = {
+			TIMES: 0,
+			ADD: 1,
+			DIVIDE: 2,
+			MINUS: 3
+		},
+		operatorStrings = [ '\u00d7', '+', '\u00f7', '-' ],
+		solutions = [],
+		usedBranch = {},
+		usedSolution = {};
 
 	function branchNode( firstNode, secondNode, operator ) {
 		this.firstNode = firstNode;
@@ -40,17 +40,17 @@ function solveNumbersGame( offeredNumbers, target ) {
 	branchNode.prototype.toString = function() {
 		if ( this.operator === Operators.TIMES ) {
 			if ( this.firstNode.operator && this.secondNode.operator ) {
-				return '( ' + this.firstNode + ' ) '
-					+ operatorStrings[this.operator]
-					+ ' ( ' + this.secondNode + ' )';
+				return '( ' + this.firstNode + ' ) ' +
+					operatorStrings[this.operator] +
+					' ( ' + this.secondNode + ' )';
 			} else if ( this.firstNode.operator ) {
-				return '( ' + this.firstNode + ' ) '
-					+ operatorStrings[this.operator]
-					+ ' ' + this.secondNode;
+				return '( ' + this.firstNode + ' ) ' +
+					operatorStrings[this.operator] +
+					' ' + this.secondNode;
 			} else if ( this.secondNode.operator ) {
-				return this.firstNode + ' '
-					+ operatorStrings[this.operator]
-					+ ' ( ' + this.secondNode + ' )';
+				return this.firstNode + ' ' +
+					operatorStrings[this.operator] +
+					' ( ' + this.secondNode + ' )';
 			} else {
 				return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
 			}
@@ -58,25 +58,25 @@ function solveNumbersGame( offeredNumbers, target ) {
 			return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
 		} else if ( this.operator === Operators.MINUS ) {
 			if ( this.secondNode.operator ) {
-				return this.firstNode + ' '
-					+ operatorStrings[this.operator]
-					+ ' ( ' + this.secondNode + ' )';
+				return this.firstNode + ' ' +
+					operatorStrings[this.operator] +
+					' ( ' + this.secondNode + ' )';
 				} else {
 					return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
 				}
 		} else if ( this.operator === Operators.DIVIDE ) {
 			if ( this.firstNode.operator && this.secondNode.operator ) {
-				return '( ' + this.firstNode + ' ) '
-					+ operatorStrings[this.operator]
-					+ ' ( ' + this.secondNode + ' )';
+				return '( ' + this.firstNode + ' ) ' +
+					operatorStrings[this.operator] +
+					' ( ' + this.secondNode + ' )';
 			} else if ( this.firstNode.operator ) {
-				return '( ' + this.firstNode + ' ) '
-					+ operatorStrings[this.operator]
-					+ ' ' + this.secondNode;
+				return '( ' + this.firstNode + ' ) ' +
+					operatorStrings[this.operator] +
+					' ' + this.secondNode;
 			} else if ( this.secondNode.operator ) {
-				return this.firstNode + ' '
-					+ operatorStrings[this.operator]
-					+ ' ( ' + this.secondNode + ' )';
+				return this.firstNode + ' ' +
+					operatorStrings[this.operator] +
+					' ( ' + this.secondNode + ' )';
 			} else {
 				return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
 			}
