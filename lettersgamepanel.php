@@ -1,4 +1,5 @@
 <h3>Letters game</h3>
+<hr>
 <div class="tile-panel">
 	<div class="gamepage-tile letter-0">&nbsp;</div>
 	<div class="gamepage-tile letter-1">&nbsp;</div>
