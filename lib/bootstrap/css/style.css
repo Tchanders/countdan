@@ -1,25 +1,36 @@
-.countdan-navbar {
+body {
 	background-color: #EEEEFF;
 }
 
+.countdan-col {
+	padding: 0px;
+}
+
+.countdan-navbar {
+	background-color: #FFFFFF;
+	box-shadow: 1px 1px 5px #DDDDDD;
+}
+
 .countdan-panel {
+	background-color: #FFFFFF;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #DDDDDD;
 	border-radius: 5px;
+	box-shadow: 1px 1px 5px #DDDDDD;
 	margin: 10px;
 	padding: 10px;
 }
 
 .game-panel {
 	text-align: center;
-	height: 300px;
+	height: 350px;
 }
 
 .clock-panel {
-	height: 300px;
+	height: 350px;
 	/* To vertically center the 250px clock */
-	padding-top: 25px;
+	padding-top: 50px;
 }
 
 .clock-image {

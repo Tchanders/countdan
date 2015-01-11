@@ -1,4 +1,5 @@
 <h3>Numbers game</h3>
+<hr>
 <div class="numbersgame-target"></div>
 <div class="tile-panel">
 	<div class="gamepage-tile number-0"></div>
