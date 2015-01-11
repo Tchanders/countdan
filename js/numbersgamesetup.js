@@ -3,9 +3,11 @@ var lowNumbers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10];
 var offeredNumbers;
 var target;
 var solutions;
+var clock = new Clock();
+$( '.clock-panel' ).append( clock.$element );
 
 function startGame() {
-	Clock.reset();
+	clock.reset();
 	$( '.gamepage-solutions' ).empty();
 	$( '.numbersgame-target' ).text( '\u00a0' );
 	for ( var i = 0; i < 6; i++ ) {
@@ -44,7 +46,7 @@ $( '.numbersgame-setnumbers' ).on( 'click', function() {
 	}
 	target = Math.floor( Math.random() * 899 ) + 101;
 	$( '.numbersgame-target' ).text( target );
-	setTimeout( Clock.start, 1000 );
+	setTimeout( function () { clock.start(); }, 1000 );
 } );
 
 $( '.numbersgame-newgame' ).on( 'click', startGame );
