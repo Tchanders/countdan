@@ -67,14 +67,14 @@
 		var angle = this.angle * time / this.duration,
 			r = ( angle * Math.PI / 180 ),
 			x = Math.sin( r ) * 125,
-			y = Math.cos( r ) * - 125,
+			y = Math.cos( r ) * -125,
 			mid = ( angle > 180 ) ? 1 : 0,
 			anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' +  x  + ' ' +  y  + ' z';
 
 		// Update the SVG via the DOM
 		this.$loader.attr( 'd', anim );
 		this.$border.attr( 'd', anim );
-		this.$hand.attr( 'transform', 'rotate( ' + angle +  ' 125 125)');
+		this.$hand.attr( 'transform', 'rotate( ' + angle +  ' 125 125)' );
 	};
 
 	// Make 'Clock' global

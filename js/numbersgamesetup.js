@@ -1,6 +1,7 @@
 ( function () {
-	var highNumbers = [100, 75, 50, 25],
-		lowNumbers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10],
+	/* global Clock, solveNumbersGame */
+	var highNumbers = [ 100, 75, 50, 25 ],
+		lowNumbers = [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 ],
 		offeredNumbers,
 		target,
 		solutions,
@@ -28,24 +29,24 @@
 		}
 		$( '.setup-button' ).addClass( 'button-disabled' );
 		$( '.ingame-button' ).removeClass( 'button-disabled' );
-		var i,
+		var i, x,
 			highNumbersCopy = highNumbers.slice(),
 			lowNumbersCopy = lowNumbers.slice(),
-			numberOfHighs = + $( this ).data( 'value' ),
+			numberOfHighs = +$( this ).data( 'value' ),
 			numberOfLows = 6 - numberOfHighs;
 		offeredNumbers = [];
 		for ( i = 0; i < numberOfHighs; i++ ) {
 			x = Math.floor( Math.random() * highNumbersCopy.length );
-			offeredNumbers.push( highNumbersCopy[x] );
+			offeredNumbers.push( highNumbersCopy[ x ] );
 			highNumbersCopy.splice( x, 1 );
 		}
 		for ( i = 0; i < numberOfLows; i++ ) {
 			x = Math.floor( Math.random() * lowNumbersCopy.length );
-			offeredNumbers.push( lowNumbersCopy[x] );
+			offeredNumbers.push( lowNumbersCopy[ x ] );
 			lowNumbersCopy.splice( x, 1 );
 		}
 		for ( i = 0; i < 6; i++ ) {
-			$( '.number-' + i ).text( offeredNumbers[i] );
+			$( '.number-' + i ).text( offeredNumbers[ i ] );
 		}
 		target = Math.floor( Math.random() * 899 ) + 101;
 		$( '.numbersgame-target' ).text( target );
@@ -61,7 +62,7 @@
 			$( '.gamepage-solutions' ).append( $( '<p>' ).text( 'No solutions found' ) );
 		} else {
 			for ( var i = 0; i < solutions.length; i++ ) {
-				$( '.gamepage-solutions' ).append( $( '<div>' ).text( solutions[i] ) );
+				$( '.gamepage-solutions' ).append( $( '<div>' ).text( solutions[ i ] ) );
 			}
 		}
 	} );

@@ -1,4 +1,5 @@
 ( function () {
+	/* global Clock, solveLettersGame */
 	// Based on Scrabble distributions (Wikipedia):
 	// E ×12, A ×9, I ×9, O ×8, N ×6, R ×6, T ×6, L ×4, S ×4, U ×4
 	// D ×4, G ×3
@@ -12,7 +13,7 @@
 			'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
 			'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I',
 			'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
-			'U', 'U', 'U', 'U',
+			'U', 'U', 'U', 'U'
 		],
 		consonants = [
 			'N', 'N', 'N', 'N', 'N', 'N',
