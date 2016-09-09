@@ -1,11 +1,16 @@
 function solveNumbersGame( offeredNumbers, target ) {
-	var n = offeredNumbers.length,
-		Operators = {
+	var Operators = {
 			TIMES: 0,
 			ADD: 1,
 			DIVIDE: 2,
 			MINUS: 3
 		},
+		ones = [],
+		twos = [],
+		threes = [],
+		fours = [],
+		fives = [],
+		sixes = [],
 		operatorStrings = [ '\u00d7', '+', '\u00f7', '-' ],
 		solutions = [],
 		usedBranch = {},
@@ -61,9 +66,9 @@ function solveNumbersGame( offeredNumbers, target ) {
 				return this.firstNode + ' ' +
 					operatorStrings[this.operator] +
 					' ( ' + this.secondNode + ' )';
-				} else {
-					return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
-				}
+			} else {
+				return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
+			}
 		} else if ( this.operator === Operators.DIVIDE ) {
 			if ( this.firstNode.operator && this.secondNode.operator ) {
 				return '( ' + this.firstNode + ' ) ' +
@@ -89,7 +94,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 	}
 
 	leafNode.prototype.toString = function() {
-		return '' + this.result;
+		return String( this.result );
 	};
 
 	function addBranchNode( firstNode, secondNode, targetArray, operator ) {
@@ -105,19 +110,18 @@ function solveNumbersGame( offeredNumbers, target ) {
 	}
 
 	function createSubTree( firstNodeArray, secondNodeArray, targetArray, last ) {
-		firstLen = firstNodeArray.length;
-		secondLen = secondNodeArray.length;
-		for ( var i = 0; i < firstLen; i++ ) {
-			for ( var j = 0; j < secondLen; j++ ) {
-				var firstNode = firstNodeArray[i],
-					secondNode = secondNodeArray[j];
+		var i, j, firstNode, secondNode,
+			firstLen = firstNodeArray.length,
+			secondLen = secondNodeArray.length;
+		for ( i = 0; i < firstLen; i++ ) {
+			for ( j = 0; j < secondLen; j++ ) {
+				firstNode = firstNodeArray[i];
+				secondNode = secondNodeArray[j];
 				// Bitwise 'and' operator to check if the same offeredNumbers have been used in 2 nodes
 				if ( !( firstNode.usedNumberPositions & secondNode.usedNumberPositions ) ) {
 					if ( !last || ( firstNode.result < target && secondNode.result < target ) ) {
-						//if ( j < i ) {
-							addBranchNode( firstNode, secondNode, targetArray, Operators.TIMES );
-							addBranchNode( firstNode, secondNode, targetArray, Operators.ADD );
-						//}
+						addBranchNode( firstNode, secondNode, targetArray, Operators.TIMES );
+						addBranchNode( firstNode, secondNode, targetArray, Operators.ADD );
 					}
 					// Intermediate result is not allowed to be a fraction
 					if ( firstNode.result % secondNode.result === 0 ) {
@@ -144,22 +148,17 @@ function solveNumbersGame( offeredNumbers, target ) {
 		}
 	}
 
-	var ones = [],
-		twos = [],
-		threes = [],
-		fours = [],
-		fives = [],
-		sixes = [];
-
 	// Create ones, which is made of leafNodes
 	// This is currently hard-coded
 	// e.g. ones[0] is 000001
-	ones[0] = new leafNode( 1 << 0, offeredNumbers[0] );
-	ones[1] = new leafNode( 1 << 1, offeredNumbers[1] );
-	ones[2] = new leafNode( 1 << 2, offeredNumbers[2] );
-	ones[3] = new leafNode( 1 << 3, offeredNumbers[3] );
-	ones[4] = new leafNode( 1 << 4, offeredNumbers[4] );
-	ones[5] = new leafNode( 1 << 5, offeredNumbers[5] );
+	ones = [
+		new leafNode( 1 << 0, offeredNumbers[0] ),
+		new leafNode( 1 << 1, offeredNumbers[1] ),
+		new leafNode( 1 << 2, offeredNumbers[2] ),
+		new leafNode( 1 << 3, offeredNumbers[3] ),
+		new leafNode( 1 << 4, offeredNumbers[4] ),
+		new leafNode( 1 << 5, offeredNumbers[5] )
+	];
 
 	// Create twos
 	createSubTree( ones, ones, twos, false );
@@ -167,15 +166,15 @@ function solveNumbersGame( offeredNumbers, target ) {
 	// Create threes
 	createSubTree( ones, twos, threes, false );
 
-	//Create fours
+	// Create fours
 	createSubTree( ones, threes, fours, false );
 	createSubTree( twos, twos, fours, false );
 
-	//create fives
+	// Create fives
 	createSubTree( ones, fours, fives, false );
 	createSubTree( twos, threes, fives, false );
 
-	//create sixes
+	// Create sixes
 	createSubTree( ones, fives, sixes, true );
 	createSubTree( twos, fours, sixes, true );
 	createSubTree( threes, threes, sixes, true );

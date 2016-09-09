@@ -1,11 +1,12 @@
 ( function () {
+	/* global Clock, wordlist */
 	var i, conundrum,
 		nines = [],
 		clock = new Clock();
 
 	for ( i in wordlist ) {
-		if ( i.length === 9 && wordlist[i].length === 1 ) {
-			nines.push( wordlist[i][0] );
+		if ( i.length === 9 && wordlist[ i ].length === 1 ) {
+			nines.push( wordlist[ i ][ 0 ] );
 		}
 	}
 
@@ -16,12 +17,12 @@
 		$( '.gamepage-solutions' ).empty();
 
 		// Generate a conundrum
-		conundrum = nines[Math.floor( nines.length * Math.random() )];
+		conundrum = nines[ Math.floor( nines.length * Math.random() ) ];
 		// Shuffle the letters
 		var letters = shuffle( conundrum.split( '' ) );
 		// Place in the tiles
 		$( '.gamepage-tile' ).each( function ( i ) {
-			$( this ).text( letters[i].toUpperCase() );
+			$( this ).text( letters[ i ].toUpperCase() );
 		} );
 		$( '.ingame-button' ).removeClass( 'button-disabled' );
 	}
@@ -38,18 +39,13 @@
 			counter--;
 
 			// And swap the last element with it
-			temp = array[counter];
-			array[counter] = array[index];
-			array[index] = temp;
+			temp = array[ counter ];
+			array[ counter ] = array[ index ];
+			array[ index ] = temp;
 		}
 
 		return array;
 	}
-
-	$( 'qqq' ).on( 'click', function() {
-		$( '.letter-' + tileCounter ).text( letters[x] );
-		setTimeout( function () { clock.start(); }, 1000 );
-	} );
 
 	$( '.gamepage-showsolutions' ).on( 'click', function() {
 		$( '.gamepage-solutions' ).append(
