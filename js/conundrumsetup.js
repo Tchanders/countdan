@@ -52,7 +52,13 @@
 	} );
 
 	$( '.gamepage-showsolutions' ).on( 'click', function() {
-		$( '.gamepage-solutions' ).append( $( '<p>' ).text( conundrum ) );
+		$( '.gamepage-solutions' ).append(
+			$( '<p>' ).append(
+				$( '<a>' )
+					.attr( 'href', 'https://en.wiktionary.org/wiki/' + conundrum + '#English' )
+					.attr( 'target', '_blank' )
+					.text( conundrum )
+		) );
 	} );
 
 	$( '.conundrumgame-newgame' ).on( 'click', startGame );
