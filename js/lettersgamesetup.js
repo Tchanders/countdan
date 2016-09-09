@@ -103,7 +103,7 @@
 						$( '.gamepage-solutions' ).append(
 							$( '<div>' ).append(
 								$( '<a>' )
-									.attr( 'href', 'http://en.wiktionary.org/wiki/' + subSolutions[j] + '#English' )
+									.attr( 'href', 'https://en.wiktionary.org/wiki/' + subSolutions[j] + '#English' )
 									.attr( 'target', '_blank' )
 									.text( subSolutions[j] )
 							)
