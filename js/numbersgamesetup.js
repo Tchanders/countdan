@@ -23,7 +23,7 @@
 		solutions = [];
 	}
 
-	$( '.numbersgame-setnumbers' ).on( 'click', function() {
+	$( '.numbersgame-setnumbers' ).on( 'click', function () {
 		if ( $( this ).hasClass( 'button-disabled' ) ) {
 			return;
 		}
@@ -50,12 +50,14 @@
 		}
 		target = Math.floor( Math.random() * 899 ) + 101;
 		$( '.numbersgame-target' ).text( target );
-		setTimeout( function () { clock.start(); }, 1000 );
+		setTimeout( function () {
+			clock.start();
+		}, 1000 );
 	} );
 
 	$( '.numbersgame-newgame' ).on( 'click', startGame );
 
-	$( '.gamepage-showsolutions' ).on( 'click', function() {
+	$( '.gamepage-showsolutions' ).on( 'click', function () {
 		$( '.gamepage-solutions' ).empty();
 		solutions = solveNumbersGame( offeredNumbers, target );
 		if ( solutions.length === 0 ) {
@@ -68,4 +70,4 @@
 	} );
 
 	startGame();
-} )();
+}() );

@@ -63,18 +63,18 @@
 		offeredLetters = [];
 	}
 
-	$( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', function() {
+	$( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', function () {
 		if ( tileCounter < 9 ) {
-			var x, letters;
+			var letters;
 			if ( $( this ).hasClass( 'lettersgame-choosevowel' ) ) {
 				// letters now refers to vowelsCopy
 				letters = vowelsCopy;
 			} else {
 				letters = consonantsCopy;
 			}
-			x = Math.floor( Math.random() * letters.length );
-			$( '.letter-' + tileCounter ).text( letters[x] );
-			offeredLetters.push( letters[x] );
+			var x = Math.floor( Math.random() * letters.length );
+			$( '.letter-' + tileCounter ).text( letters[ x ] );
+			offeredLetters.push( letters[ x ] );
 			letters.splice( x, 1 );
 			tileCounter++;
 		}
@@ -86,27 +86,28 @@
 			// NB setup buttons are not actually disabled, but they don't do anything
 			$( '.setup-button' ).addClass( 'button-disabled' );
 			$( '.ingame-button' ).removeClass( 'button-disabled' );
-			setTimeout( function () { clock.start(); }, 1000 );
+			setTimeout( function () {
+				clock.start();
+			}, 1000 );
 		}
 	} );
 
-	$( '.gamepage-showsolutions' ).on( 'click', function() {
-		var i, j, subSolutions,
-			solutions = solveLettersGame( offeredLetters.join( '' ) );
+	$( '.gamepage-showsolutions' ).on( 'click', function () {
+		var solutions = solveLettersGame( offeredLetters.join( '' ) );
 		if ( solutions.length === 0 ) {
 			$( '.gamepage-solutions' ).append( $( '<p>' ).text( 'No solutions found' ) );
 		} else {
-			for ( i = 9; i >= 5; i-- ) {
-				if ( solutions[i] ) {
-					subSolutions = solutions[i];
+			for ( var i = 9; i >= 5; i-- ) {
+				if ( solutions[ i ] ) {
+					var subSolutions = solutions[ i ];
 					$( '.gamepage-solutions' ).append( $( '<h2>' ).text( i + ' letters' ) );
-					for ( j = 0; j < subSolutions.length; j++ ) {
+					for ( var j = 0; j < subSolutions.length; j++ ) {
 						$( '.gamepage-solutions' ).append(
 							$( '<div>' ).append(
 								$( '<a>' )
-									.attr( 'href', 'https://en.wiktionary.org/wiki/' + subSolutions[j] + '#English' )
+									.attr( 'href', 'https://en.wiktionary.org/wiki/' + subSolutions[ j ] + '#English' )
 									.attr( 'target', '_blank' )
-									.text( subSolutions[j] )
+									.text( subSolutions[ j ] )
 							)
 						);
 					}
@@ -118,4 +119,4 @@
 	$( '.lettersgame-newgame' ).on( 'click', startGame );
 
 	startGame();
-} )();
+}() );

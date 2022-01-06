@@ -1,23 +1,19 @@
 {
-	"extends": "wikimedia",
+	"extends": [
+		"wikimedia/client",
+		"wikimedia/jquery"
+	],
 
-	"ecmaVersion": 5,
-	"env": {
-		"browser": true,
-		"node": true,
-		"jquery": true,
-		"qunit": true
-	},
 	"globals": {
-		"OO": false
+		"Countdan": "readonly"
 	},
 
 	"rules": {
-		"dot-notation": 0,
-		"valid-jsdoc": 0,
-		"wrap-iife": 0,
-		"no-bitwise": 0,
-		"spaced-comment": ["error", "always", { "exceptions": ["*", "!"] }],
-		"no-use-before-define": ["error", { "functions": false, "classes": true }]
+		"max-len": "off",
+		"no-bitwise": "off",
+		"no-implicit-globals": "off",
+		"no-jquery/no-class-state": "off",
+		"no-jquery/no-global-selector": "off",
+		"no-use-before-define": [ "error", "nofunc" ]
 	}
 }

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function solveNumbersGame( offeredNumbers, target ) {
 	var Operators = {
 			TIMES: 0,
@@ -16,7 +17,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 		usedBranch = {},
 		usedSolution = {};
 
-	function branchNode( firstNode, secondNode, operator ) {
+	function BranchNode( firstNode, secondNode, operator ) {
 		this.firstNode = firstNode;
 		this.secondNode = secondNode;
 
@@ -33,80 +34,81 @@ function solveNumbersGame( offeredNumbers, target ) {
 		} else if ( this.operator === Operators.MINUS ) {
 			this.result = firstNode.result - secondNode.result;
 		} else {
-			console.log( 'branchNode result error' );
+			// eslint-disable-next-line no-console
+			console.log( 'BranchNode result error' );
 		}
 		// Check if result = target
-		if ( this.result === target && !usedSolution[this.toString()] ) {
+		if ( this.result === target && !usedSolution[ this.toString() ] ) {
 			solutions.push( this.toString() );
-			usedSolution[this.toString()] = true;
+			usedSolution[ this.toString() ] = true;
 		}
 	}
 
-	branchNode.prototype.toString = function() {
+	BranchNode.prototype.toString = function () {
 		if ( this.operator === Operators.TIMES ) {
 			if ( this.firstNode.operator && this.secondNode.operator ) {
 				return '( ' + this.firstNode + ' ) ' +
-					operatorStrings[this.operator] +
+					operatorStrings[ this.operator ] +
 					' ( ' + this.secondNode + ' )';
 			} else if ( this.firstNode.operator ) {
 				return '( ' + this.firstNode + ' ) ' +
-					operatorStrings[this.operator] +
+					operatorStrings[ this.operator ] +
 					' ' + this.secondNode;
 			} else if ( this.secondNode.operator ) {
 				return this.firstNode + ' ' +
-					operatorStrings[this.operator] +
+					operatorStrings[ this.operator ] +
 					' ( ' + this.secondNode + ' )';
 			} else {
-				return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
+				return this.firstNode + ' ' + operatorStrings[ this.operator ] + ' ' + this.secondNode;
 			}
 		} else if ( this.operator === Operators.ADD ) {
-			return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
+			return this.firstNode + ' ' + operatorStrings[ this.operator ] + ' ' + this.secondNode;
 		} else if ( this.operator === Operators.MINUS ) {
 			if ( this.secondNode.operator ) {
 				return this.firstNode + ' ' +
-					operatorStrings[this.operator] +
+					operatorStrings[ this.operator ] +
 					' ( ' + this.secondNode + ' )';
 			} else {
-				return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
+				return this.firstNode + ' ' + operatorStrings[ this.operator ] + ' ' + this.secondNode;
 			}
 		} else if ( this.operator === Operators.DIVIDE ) {
 			if ( this.firstNode.operator && this.secondNode.operator ) {
 				return '( ' + this.firstNode + ' ) ' +
-					operatorStrings[this.operator] +
+					operatorStrings[ this.operator ] +
 					' ( ' + this.secondNode + ' )';
 			} else if ( this.firstNode.operator ) {
 				return '( ' + this.firstNode + ' ) ' +
-					operatorStrings[this.operator] +
+					operatorStrings[ this.operator ] +
 					' ' + this.secondNode;
 			} else if ( this.secondNode.operator ) {
 				return this.firstNode + ' ' +
-					operatorStrings[this.operator] +
+					operatorStrings[ this.operator ] +
 					' ( ' + this.secondNode + ' )';
 			} else {
-				return this.firstNode + ' ' + operatorStrings[this.operator] + ' ' + this.secondNode;
+				return this.firstNode + ' ' + operatorStrings[ this.operator ] + ' ' + this.secondNode;
 			}
 		}
 	};
 
-	function leafNode( usedNumberPositions, result ) {
+	function LeafNode( usedNumberPositions, result ) {
 		this.usedNumberPositions = usedNumberPositions;
 		this.result = result;
 	}
 
-	leafNode.prototype.toString = function() {
+	LeafNode.prototype.toString = function () {
 		return String( this.result );
 	};
 
 	function addBranchNode( firstNode, secondNode, targetArray, operator ) {
-		var newNode = new branchNode( firstNode, secondNode, operator );
+		var newNode = new BranchNode( firstNode, secondNode, operator );
 		if ( newNode.result === firstNode.result || newNode.result === secondNode.result ) {
 			return;
 		}
-		if ( newNode.usedNumberPositions !== 63 && usedBranch[newNode.result + '.' + newNode.usedNumberPositions] ) {
+		if ( newNode.usedNumberPositions !== 63 && usedBranch[ newNode.result + '.' + newNode.usedNumberPositions ] ) {
 			return;
 		}
 		targetArray.push( newNode );
-		usedBranch[newNode.result + '.' + newNode.usedNumberPositions] = true;
+		usedBranch[ newNode.result + '.' + newNode.usedNumberPositions ] = true;
 	}
 
 	function createSubTree( firstNodeArray, secondNodeArray, targetArray, last ) {
@@ -115,8 +117,8 @@ function solveNumbersGame( offeredNumbers, target ) {
 			secondLen = secondNodeArray.length;
 		for ( i = 0; i < firstLen; i++ ) {
 			for ( j = 0; j < secondLen; j++ ) {
-				firstNode = firstNodeArray[i];
-				secondNode = secondNodeArray[j];
+				firstNode = firstNodeArray[ i ];
+				secondNode = secondNodeArray[ j ];
 				// Bitwise 'and' operator to check if the same offeredNumbers have been used in 2 nodes
 				if ( !( firstNode.usedNumberPositions & secondNode.usedNumberPositions ) ) {
 					if ( !last || ( firstNode.result < target && secondNode.result < target ) ) {
@@ -148,16 +150,16 @@ function solveNumbersGame( offeredNumbers, target ) {
 		}
 	}
 
-	// Create ones, which is made of leafNodes
+	// Create ones, which is made of LeafNodes
 	// This is currently hard-coded
 	// e.g. ones[0] is 000001
 	ones = [
-		new leafNode( 1 << 0, offeredNumbers[0] ),
-		new leafNode( 1 << 1, offeredNumbers[1] ),
-		new leafNode( 1 << 2, offeredNumbers[2] ),
-		new leafNode( 1 << 3, offeredNumbers[3] ),
-		new leafNode( 1 << 4, offeredNumbers[4] ),
-		new leafNode( 1 << 5, offeredNumbers[5] )
+		new LeafNode( 1 << 0, offeredNumbers[ 0 ] ),
+		new LeafNode( 1 << 1, offeredNumbers[ 1 ] ),
+		new LeafNode( 1 << 2, offeredNumbers[ 2 ] ),
+		new LeafNode( 1 << 3, offeredNumbers[ 3 ] ),
+		new LeafNode( 1 << 4, offeredNumbers[ 4 ] ),
+		new LeafNode( 1 << 5, offeredNumbers[ 5 ] )
 	];
 
 	// Create twos
