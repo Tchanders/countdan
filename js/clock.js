@@ -78,7 +78,6 @@
 		this.$hand.attr( 'transform', 'rotate( ' + angle + ' 125 125)' );
 	};
 
-	// Make 'Clock' global
-	window.Clock = Clock;
+	Countdan.Clock = Clock;
 
 }() );

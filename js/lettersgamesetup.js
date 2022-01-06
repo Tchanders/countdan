@@ -1,5 +1,5 @@
 ( function () {
-	/* global Clock, solveLettersGame */
+	/* global solveLettersGame */
 	// Based on Scrabble distributions (Wikipedia):
 	// E ×12, A ×9, I ×9, O ×8, N ×6, R ×6, T ×6, L ×4, S ×4, U ×4
 	// D ×4, G ×3
@@ -8,7 +8,9 @@
 	// K ×1
 	// J ×1, X ×1
 	// Q ×1, Z ×1
-	var vowels = [
+	var MIN_LETTERS = 5,
+		MAX_LETTERS = 9,
+		vowels = [
 			'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E',
 			'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
 			'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I',
@@ -41,13 +43,39 @@
 		vowelsCopy,
 		consonantsCopy,
 		tileCounter,
-		offeredLetters,
-		clock = new Clock();
+		offeredLetters;
 
-	$( '.clock-panel' ).append( clock.$element );
+	function init() {
+		var i,
+			$tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+
+		for ( i = 0; i < MAX_LETTERS; i++ ) {
+			// Split the tiles over two rows
+			if ( i === Math.ceil( MAX_LETTERS / 2 ) ) {
+				$tilePanel.append( $( '<br>' ) );
+			}
+			$tilePanel.append(
+				$( '<div>' ).addClass( 'gamepage-tile letter-' + i )
+			);
+		}
+		$( '.game-content' ).append(
+			$tilePanel,
+			'To start the game, choose nine letters:',
+			$( '<br>' ),
+			$( '<div>' ).addClass( 'setup-button gamepage-button lettersgame-choosevowel' ).text( 'Vowel' ),
+			$( '<div>' ).addClass( 'setup-button gamepage-button lettersgame-chooseconsonant' ).text( 'Consonant' ),
+			$( '<div>' ).addClass( 'ingame-button gamepage-button lettersgame-newgame button-disabled' ).text( 'Start again' )
+		);
+
+		$( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', chooseLetter );
+		$( '.gamepage-showsolutions' ).on( 'click', showSolutions );
+		$( '.lettersgame-newgame' ).on( 'click', startGame );
+
+		startGame();
+	}
 
 	function startGame() {
-		clock.reset();
+		Countdan.clock.reset();
 		$( '.gamepage-tile' ).text( '\u00a0' );
 		$( '.gamepage-solutions' ).empty();
 		// During setup:
@@ -63,8 +91,8 @@
 		offeredLetters = [];
 	}
 
-	$( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', function () {
-		if ( tileCounter < 9 ) {
+	function chooseLetter() {
+		if ( tileCounter < MAX_LETTERS ) {
 			var letters;
 			if ( $( this ).hasClass( 'lettersgame-choosevowel' ) ) {
 				// letters now refers to vowelsCopy
@@ -79,7 +107,7 @@
 			tileCounter++;
 		}
 		// Start the game automatically when all the tiles are full
-		if ( tileCounter === 9 ) {
+		if ( tileCounter === MAX_LETTERS ) {
 			// During play:
 			// make setup buttons look disabled
 			// make inplay buttons look enabled
@@ -87,17 +115,18 @@
 			$( '.setup-button' ).addClass( 'button-disabled' );
 			$( '.ingame-button' ).removeClass( 'button-disabled' );
 			setTimeout( function () {
-				clock.start();
+				Countdan.clock.start();
 			}, 1000 );
 		}
-	} );
+	}
 
-	$( '.gamepage-showsolutions' ).on( 'click', function () {
+	function showSolutions() {
+		$( '.gamepage-solutions' ).empty();
 		var solutions = solveLettersGame( offeredLetters.join( '' ) );
 		if ( solutions.length === 0 ) {
 			$( '.gamepage-solutions' ).append( $( '<p>' ).text( 'No solutions found' ) );
 		} else {
-			for ( var i = 9; i >= 5; i-- ) {
+			for ( var i = MAX_LETTERS; i >= MIN_LETTERS; i-- ) {
 				if ( solutions[ i ] ) {
 					var subSolutions = solutions[ i ];
 					$( '.gamepage-solutions' ).append( $( '<h2>' ).text( i + ' letters' ) );
@@ -114,9 +143,7 @@
 				}
 			}
 		}
-	} );
+	}
 
-	$( '.lettersgame-newgame' ).on( 'click', startGame );
-
-	startGame();
+	Countdan.lettersGame = init;
 }() );

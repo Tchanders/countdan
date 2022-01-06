@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="lib/bootstrap/css/style.css" rel="stylesheet">
+	<link rel="apple-touch-icon-precomposed" href="images/icons/phoneicon.png">
+
+	<title>Countdan</title>
+
+</head>
+
+<body>
+
+	<div class="navbar navbar-default countdan-navbar">
+		<div class="container">
+			<div class="navbar-left">
+				<a href="." class="navbar-brand">Countdan</a>
+			</div>
+			<div type="button" class="navbar-toggle" data-toggle="collapse" data-target=".menu-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</div>
+			<div class="collapse navbar-collapse menu-collapse navbar-right">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href=".">Letters</a>
+					</li>
+					<li>
+						<a href="numbers">Numbers</a>
+					</li>
+					<li>
+						<a href="conundrum">Conundrum</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container countdan-container">
+		<div class="row">
+			<div class="col-md-8 countdan-col">
+				<div class="countdan-panel game-panel">
+					<h3 class="game-title"></h3>
+					<hr>
+					<div class="game-content"></div>
+				</div>
+			</div>
+			<div class="col-md-4 countdan-col">
+				<div class="countdan-panel clock-panel"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 countdan-col">
+				<div class="countdan-panel rules-panel">
+					<h3>Rules</h3>
+					<hr>
+					<ul class="rules-list"></ul>
+				</div>
+			</div>
+			<div class="col-md-4 countdan-col">
+				<div class="countdan-panel solutions-panel">
+					<h3>Solutions</h3>
+					<hr>
+					<div class="ingame-button gamepage-button gamepage-showsolutions button-disabled">Show solutions</div>
+					<div class="gamepage-solutions"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Libs -->
+	<script src="lib/js/jquery-1.11.0.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="js/countdan.js"></script>
+	<!-- Clock -->
+	<script src="js/clock.js"></script>
+	<!-- Numbers -->
+	<script src="js/numbersgame.js"></script>
+	<script src="js/numbersgamesetup.js"></script>
+	<!-- Letters -->
+	<script src="js/letters.js"></script>
+	<script src="js/lettersgame.js"></script>
+	<script src="js/lettersgamesetup.js"></script>
+	<!-- Conundrum -->
+	<script src="js/conundrumsetup.js"></script>
+
+</body>
+</html>

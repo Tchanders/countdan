@@ -1,19 +1,41 @@
 ( function () {
-	/* global Clock, wordlist */
+	/* global wordlist */
 	var conundrum,
-		nines = [],
-		clock = new Clock();
+		nines = [];
 
-	for ( var i in wordlist ) {
-		if ( i.length === 9 && wordlist[ i ].length === 1 ) {
-			nines.push( wordlist[ i ][ 0 ] );
+	function init() {
+		var i,
+			$tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+
+		// Conundrums are nine-letter words with only one anagram
+		for ( i in wordlist ) {
+			if ( i.length === 9 && wordlist[ i ].length === 1 ) {
+				nines.push( wordlist[ i ][ 0 ] );
+			}
 		}
+
+		for ( i = 0; i < 9; i++ ) {
+			// Split the tiles over two rows
+			if ( i === 5 ) {
+				$tilePanel.append( $( '<br>' ) );
+			}
+			$tilePanel.append(
+				$( '<div>' ).addClass( 'gamepage-tile letter-' + i )
+			);
+		}
+		$( '.game-content' ).append(
+			$tilePanel,
+			$( '<div>' ).addClass( 'ingame-button gamepage-button conundrumgame-newgame' ).text( 'New conundrum' )
+		);
+
+		$( '.gamepage-showsolutions' ).on( 'click', showSolution );
+		$( '.conundrumgame-newgame' ).on( 'click', startGame );
+
+		startGame();
 	}
 
-	$( '.clock-panel' ).append( clock.$element );
-
 	function startGame() {
-		clock.start();
+		Countdan.clock.start();
 		$( '.gamepage-solutions' ).empty();
 
 		// Generate a conundrum
@@ -47,7 +69,8 @@
 		return array;
 	}
 
-	$( '.gamepage-showsolutions' ).on( 'click', function () {
+	function showSolution() {
+		$( '.gamepage-solutions' ).empty();
 		$( '.gamepage-solutions' ).append(
 			$( '<p>' ).append(
 				$( '<a>' )
@@ -56,8 +79,8 @@
 					.text( conundrum )
 			)
 		);
-	} );
+	}
 
-	$( '.conundrumgame-newgame' ).on( 'click', startGame );
+	Countdan.conundrum = init;
 
 }() );

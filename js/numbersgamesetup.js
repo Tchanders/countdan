@@ -1,16 +1,47 @@
 ( function () {
-	/* global Clock, solveNumbersGame */
+	/* global solveNumbersGame */
 	var highNumbers = [ 100, 75, 50, 25 ],
 		lowNumbers = [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 ],
 		offeredNumbers,
 		target,
-		solutions,
-		clock = new Clock();
+		solutions;
 
-	$( '.clock-panel' ).append( clock.$element );
+	function init() {
+		var i,
+			$tilePanel = $( '<div>' ).addClass( 'tile-panel' ),
+			$setNumbers = $( [] );
+
+		for ( i = 0; i < 6; i++ ) {
+			$tilePanel.append(
+				$( '<div>' ).addClass( 'gamepage-tile number-' + i )
+			);
+		}
+		for ( i = 0; i <= highNumbers.length; i++ ) {
+			$setNumbers = $setNumbers.add(
+				$( '<div>' )
+					.addClass( 'setup-button gamepage-button numbersgame-setnumbers' )
+					.attr( 'data-value', i )
+					.text( i )
+			);
+		}
+		$( '.game-content' ).append(
+			$( '<div>' ).addClass( 'numbersgame-target' ),
+			$tilePanel,
+			'To start the game, choose how many big numbers you want:',
+			$( '<br>' ),
+			$setNumbers,
+			$( '<div>' ).addClass( 'ingame-button gamepage-button numbersgame-newgame button-disabled' ).text( 'Start again' )
+		);
+
+		$( '.numbersgame-setnumbers' ).on( 'click', setNumbers );
+		$( '.numbersgame-newgame' ).on( 'click', startGame );
+		$( '.gamepage-showsolutions' ).on( 'click', showSolutions );
+
+		startGame();
+	}
 
 	function startGame() {
-		clock.reset();
+		Countdan.clock.reset();
 		$( '.gamepage-solutions' ).empty();
 		$( '.numbersgame-target' ).text( '\u00a0' );
 		for ( var i = 0; i < 6; i++ ) {
@@ -23,7 +54,7 @@
 		solutions = [];
 	}
 
-	$( '.numbersgame-setnumbers' ).on( 'click', function () {
+	function setNumbers() {
 		if ( $( this ).hasClass( 'button-disabled' ) ) {
 			return;
 		}
@@ -51,13 +82,11 @@
 		target = Math.floor( Math.random() * 899 ) + 101;
 		$( '.numbersgame-target' ).text( target );
 		setTimeout( function () {
-			clock.start();
+			Countdan.clock.start();
 		}, 1000 );
-	} );
+	}
 
-	$( '.numbersgame-newgame' ).on( 'click', startGame );
-
-	$( '.gamepage-showsolutions' ).on( 'click', function () {
+	function showSolutions() {
 		$( '.gamepage-solutions' ).empty();
 		solutions = solveNumbersGame( offeredNumbers, target );
 		if ( solutions.length === 0 ) {
@@ -67,7 +96,7 @@
 				$( '.gamepage-solutions' ).append( $( '<div>' ).text( solutions[ i ] ) );
 			}
 		}
-	} );
+	}
 
-	startGame();
+	Countdan.numbersGame = init;
 }() );
