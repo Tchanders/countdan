@@ -39,15 +39,14 @@
 			'X',
 			'Q',
 			'Z'
-		];
-	let vowelsCopy,
-		consonantsCopy,
-		tileCounter,
-		offeredLetters;
+		],
+		vowelOptions = [ 3, 4, 5 ];
+	let offeredLetters;
 
 	function init() {
 		const $tilePanel = $( '<div>' ).addClass( 'tile-panel' );
-		let i;
+		let i,
+			$setVowels = $( [] );
 
 		for ( i = 0; i < MAX_LETTERS; i++ ) {
 			// Split the tiles over two rows
@@ -58,16 +57,23 @@
 				$( '<div>' ).addClass( 'gamepage-tile letter-' + i )
 			);
 		}
+		for ( i = 0; i < vowelOptions.length; i++ ) {
+			$setVowels = $setVowels.add(
+				$( '<div>' )
+					.addClass( 'setup-button gamepage-button lettersgame-setvowels' )
+					.attr( 'data-value', vowelOptions[ i ] )
+					.text( vowelOptions[ i ] )
+			);
+		}
 		$( '.game-content' ).append(
 			$tilePanel,
-			'To start the game, choose nine letters:',
+			'To start the game, choose how many vowels you want:',
 			$( '<br>' ),
-			$( '<div>' ).addClass( 'setup-button gamepage-button lettersgame-choosevowel' ).text( 'Vowel' ),
-			$( '<div>' ).addClass( 'setup-button gamepage-button lettersgame-chooseconsonant' ).text( 'Consonant' ),
+			$setVowels,
 			$( '<div>' ).addClass( 'ingame-button gamepage-button lettersgame-newgame button-disabled' ).text( 'Start again' )
 		);
 
-		$( '.lettersgame-choosevowel, .lettersgame-chooseconsonant' ).on( 'click', chooseLetter );
+		$( '.lettersgame-setvowels' ).on( 'click', setVowels );
 		$( '.gamepage-showsolutions' ).on( 'click', showSolutions );
 		$( '.lettersgame-newgame' ).on( 'click', startGame );
 
@@ -84,38 +90,36 @@
 		// NB inplay buttons are not actually disabled, but they don't do anything
 		$( '.setup-button' ).removeClass( 'button-disabled' );
 		$( '.ingame-button' ).addClass( 'button-disabled' );
-		// vowelsCopy is a shallow copy of vowels
-		vowelsCopy = vowels.slice();
-		consonantsCopy = consonants.slice();
-		tileCounter = 0;
 		offeredLetters = [];
 	}
 
-	function chooseLetter() {
-		if ( tileCounter < MAX_LETTERS ) {
-			let letters;
-			if ( $( this ).hasClass( 'lettersgame-choosevowel' ) ) {
-				// letters now refers to vowelsCopy
-				letters = vowelsCopy;
-			} else {
-				letters = consonantsCopy;
-			}
-			const x = Math.floor( Math.random() * letters.length );
-			$( '.letter-' + tileCounter ).text( letters[ x ] );
+	function setVowels() {
+		if ( $( this ).hasClass( 'button-disabled' ) ) {
+			return;
+		}
+		// During play:
+		// make setup buttons look disabled
+		// make inplay buttons look enabled
+		$( '.setup-button' ).addClass( 'button-disabled' );
+		$( '.ingame-button' ).removeClass( 'button-disabled' );
+		const vowelsCopy = vowels.slice(),
+			consonantsCopy = consonants.slice(),
+			numberOfVowels = +$( this ).data( 'value' ),
+			vowelPositions = [];
+		let i, letters, x;
+		// Spread the vowels evenly among the consonants
+		for ( i = 0; i < numberOfVowels; i++ ) {
+			vowelPositions.push( Math.floor( ( 2 * i + 1 ) * MAX_LETTERS / ( 2 * numberOfVowels ) ) );
+		}
+		offeredLetters = [];
+		for ( i = 0; i < MAX_LETTERS; i++ ) {
+			letters = vowelPositions.includes( i ) ? vowelsCopy : consonantsCopy;
+			x = Math.floor( Math.random() * letters.length );
+			$( '.letter-' + i ).text( letters[ x ] );
 			offeredLetters.push( letters[ x ] );
 			letters.splice( x, 1 );
-			tileCounter++;
 		}
-		// Start the game automatically when all the tiles are full
-		if ( tileCounter === MAX_LETTERS ) {
-			// During play:
-			// make setup buttons look disabled
-			// make inplay buttons look enabled
-			// NB setup buttons are not actually disabled, but they don't do anything
-			$( '.setup-button' ).addClass( 'button-disabled' );
-			$( '.ingame-button' ).removeClass( 'button-disabled' );
-			Countdan.clock.start( 1000 );
-		}
+		Countdan.clock.start( 1000 );
 	}
 
 	function showSolutions() {
