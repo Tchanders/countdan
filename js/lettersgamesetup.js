@@ -41,7 +41,8 @@
 			'Z'
 		],
 		vowelOptions = [ 3, 4, 5 ];
-	let offeredLetters;
+	let offeredLetters,
+		answerRow;
 
 	function init() {
 		const $tilePanel = $( '<div>' ).addClass( 'tile-panel tile-panel-letters' );
@@ -61,12 +62,14 @@
 					.text( vowelOptions[ i ] )
 			);
 		}
+		answerRow = new Countdan.AnswerRow( $tilePanel.children() );
 		$( '.game-content' ).append(
 			$tilePanel,
 			'To start the game, choose how many vowels you want:',
 			$( '<br>' ),
 			$setVowels,
-			$( '<div>' ).addClass( 'ingame-button gamepage-button lettersgame-newgame button-disabled' ).text( 'Start again' )
+			$( '<div>' ).addClass( 'ingame-button gamepage-button lettersgame-newgame button-disabled' ).text( 'Start again' ),
+			answerRow.$element
 		);
 
 		$( '.lettersgame-setvowels' ).on( 'click', setVowels );
@@ -78,7 +81,8 @@
 
 	function startGame() {
 		Countdan.clock.reset();
-		$( '.gamepage-tile' ).text( '\u00a0' );
+		$( '.tile-panel-letters:not( .answer-panel ) .gamepage-tile' ).text( '\u00a0' );
+		answerRow.reset();
 		$( '.gamepage-solutions' ).empty();
 		// During setup:
 		// make setup buttons look enabled
@@ -115,6 +119,7 @@
 			offeredLetters.push( letters[ x ] );
 			letters.splice( x, 1 );
 		}
+		answerRow.reset();
 		Countdan.clock.start( 1000 );
 	}
 

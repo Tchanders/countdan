@@ -1,7 +1,8 @@
 ( function () {
 	/* global wordlist */
 	const nines = [];
-	let conundrum;
+	let conundrum,
+		answerRow;
 
 	function init() {
 		const $tilePanel = $( '<div>' ).addClass( 'tile-panel tile-panel-letters' );
@@ -21,9 +22,11 @@
 				$( '<div>' ).addClass( 'gamepage-tile letter-' + i )
 			);
 		}
+		answerRow = new Countdan.AnswerRow( $tilePanel.children() );
 		$( '.game-content' ).append(
 			$tilePanel,
-			$( '<div>' ).addClass( 'ingame-button gamepage-button conundrumgame-newgame' ).text( 'New conundrum' )
+			$( '<div>' ).addClass( 'ingame-button gamepage-button conundrumgame-newgame' ).text( 'New conundrum' ),
+			answerRow.$element
 		);
 
 		$( '.gamepage-showsolutions' ).on( 'click', showSolution );
@@ -41,9 +44,10 @@
 		// Shuffle the letters
 		const letters = shuffle( conundrum.split( '' ) );
 		// Place in the tiles
-		$( '.gamepage-tile' ).each( function ( j ) {
+		answerRow.$selectionTiles.each( function ( j ) {
 			$( this ).text( letters[ j ].toUpperCase() );
 		} );
+		answerRow.reset();
 		$( '.ingame-button' ).removeClass( 'button-disabled' );
 	}
 

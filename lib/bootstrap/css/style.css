@@ -98,6 +98,21 @@ body {
 	line-height: var( --tile-size );
 }
 
+.tile-panel-letters .gamepage-tile {
+	cursor: pointer;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.gamepage-tile.tile-used {
+	background-color: #AAAAAA;
+}
+
+.gamepage-tile.answer-tile-empty {
+	background-color: #EEEEEE;
+	cursor: default;
+}
+
 .numbersgame-setnumbers {
 	display: inline-block;
 	margin: 0px 5px;
