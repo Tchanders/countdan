@@ -9,6 +9,7 @@ body {
 .countdan-navbar {
 	background-color: #FFFFFF;
 	box-shadow: 1px 1px 5px #DDDDDD;
+	margin-bottom: 20px;
 }
 
 .countdan-panel {
@@ -22,9 +23,20 @@ body {
 	padding: 10px;
 }
 
+.countdan-panel h3 {
+	margin-top: 20px;
+	font-size: 24px;
+}
+
+.countdan-panel hr {
+	margin: 20px 0;
+	border-color: #EEEEEE;
+	opacity: 1;
+}
+
 .game-panel {
 	text-align: center;
-	height: 350px;
+	min-height: 350px;
 }
 
 .clock-panel {

@@ -3,10 +3,10 @@
 
 <head>
 
-	<meta charset="utf8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="lib/bootstrap/css/style.css" rel="stylesheet">
 	<link rel="apple-touch-icon-precomposed" href="images/icons/phoneicon.png">
 
@@ -16,55 +16,50 @@
 
 <body>
 
-	<div class="navbar navbar-default countdan-navbar">
+	<nav class="navbar navbar-expand-md countdan-navbar">
 		<div class="container">
-			<div class="navbar-left">
-				<a href="." class="navbar-brand">Countdan</a>
-			</div>
-			<div type="button" class="navbar-toggle" data-toggle="collapse" data-target=".menu-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</div>
-			<div class="collapse navbar-collapse menu-collapse navbar-right">
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href=".">Letters</a>
+			<a href="." class="navbar-brand">Countdan</a>
+			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#countdan-menu" aria-controls="countdan-menu" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="countdan-menu">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a href="." class="nav-link">Letters</a>
 					</li>
-					<li>
-						<a href="numbers">Numbers</a>
+					<li class="nav-item">
+						<a href="numbers" class="nav-link">Numbers</a>
 					</li>
-					<li>
-						<a href="conundrum">Conundrum</a>
+					<li class="nav-item">
+						<a href="conundrum" class="nav-link">Conundrum</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-	</div>
+	</nav>
 
 	<div class="container countdan-container">
 		<div class="row">
-			<div class="col-md-8 countdan-col">
+			<div class="col-lg-8 countdan-col">
 				<div class="countdan-panel game-panel">
 					<h3 class="game-title"></h3>
 					<hr>
 					<div class="game-content"></div>
 				</div>
 			</div>
-			<div class="col-md-4 countdan-col">
+			<div class="col-lg-4 countdan-col">
 				<div class="countdan-panel clock-panel"></div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-8 countdan-col">
+			<div class="col-lg-8 countdan-col">
 				<div class="countdan-panel rules-panel">
 					<h3>Rules</h3>
 					<hr>
 					<ul class="rules-list"></ul>
 				</div>
 			</div>
-			<div class="col-md-4 countdan-col">
+			<div class="col-lg-4 countdan-col">
 				<div class="countdan-panel solutions-panel">
 					<h3>Solutions</h3>
 					<hr>
@@ -77,7 +72,7 @@
 
 	<!-- Libs -->
 	<script src="lib/js/jquery-4.0.0.min.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<script src="js/countdan.js"></script>
 	<!-- Clock -->
