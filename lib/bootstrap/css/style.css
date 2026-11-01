@@ -64,32 +64,38 @@ body {
 }
 
 .tile-panel {
+	--tile-count: 6;
+	--tile-max: 60px;
+	/* Numbers can be three digits wide */
+	--tile-font-scale: 0.5;
 	text-align: center;
+	white-space: nowrap;
+	container-type: inline-size;
 }
 
-.gamepage-tile {
-	display: inline-block;
-	color: #FFFFFF;
-	background-color: #2222FF;
-	margin: 10px 5px;
-}
-
-@media ( min-width: 1200px ) {
-	.gamepage-tile {
-		width: 60px;
-		height: 60px;
-		font-size: 27px;
-		line-height: 60px;
-	}
+.tile-panel-letters {
+	--tile-count: 9;
+	--tile-font-scale: 0.65;
 }
 
 @media ( max-width: 1199px ) {
-	.gamepage-tile {
-		width: 50px;
-		height: 50px;
-		font-size: 23px;
-		line-height: 50px;
+	.tile-panel {
+		--tile-max: 50px;
 	}
+}
+
+.gamepage-tile {
+	/* Shrink tiles to keep them on one line in narrow containers */
+	--tile-size: min( var( --tile-max ), 100cqi / ( var( --tile-count ) * 1.2 ) );
+	display: inline-block;
+	width: var( --tile-size );
+	height: var( --tile-size );
+	margin: 10px calc( var( --tile-size ) * 0.1 );
+	color: #FFFFFF;
+	background-color: #2222FF;
+	font-size: calc( var( --tile-size ) * var( --tile-font-scale ) );
+	font-weight: bold;
+	line-height: var( --tile-size );
 }
 
 .numbersgame-setnumbers {

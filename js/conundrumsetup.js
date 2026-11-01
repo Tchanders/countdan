@@ -4,7 +4,7 @@
 	let conundrum;
 
 	function init() {
-		const $tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+		const $tilePanel = $( '<div>' ).addClass( 'tile-panel tile-panel-letters' );
 		let i;
 
 		// Conundrums are nine-letter words with only one anagram
@@ -17,10 +17,6 @@
 		}
 
 		for ( i = 0; i < 9; i++ ) {
-			// Split the tiles over two rows
-			if ( i === 5 ) {
-				$tilePanel.append( $( '<br>' ) );
-			}
 			$tilePanel.append(
 				$( '<div>' ).addClass( 'gamepage-tile letter-' + i )
 			);

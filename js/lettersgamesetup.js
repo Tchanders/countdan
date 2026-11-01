@@ -44,15 +44,11 @@
 	let offeredLetters;
 
 	function init() {
-		const $tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+		const $tilePanel = $( '<div>' ).addClass( 'tile-panel tile-panel-letters' );
 		let i,
 			$setVowels = $( [] );
 
 		for ( i = 0; i < MAX_LETTERS; i++ ) {
-			// Split the tiles over two rows
-			if ( i === Math.ceil( MAX_LETTERS / 2 ) ) {
-				$tilePanel.append( $( '<br>' ) );
-			}
 			$tilePanel.append(
 				$( '<div>' ).addClass( 'gamepage-tile letter-' + i )
 			);
