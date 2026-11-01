@@ -2,7 +2,7 @@
 	"scripts": {
 		"test": "eslint ."
 	},
-	"dependencies": {
-		"eslint-config-wikimedia": "^0.21.0"
+	"devDependencies": {
+		"eslint-config-wikimedia": "^0.32.6"
 	}
 }

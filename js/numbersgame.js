@@ -1,12 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 function solveNumbersGame( offeredNumbers, target ) {
-	var Operators = {
+	const Operators = {
 			TIMES: 0,
 			ADD: 1,
 			DIVIDE: 2,
 			MINUS: 3
 		},
-		ones = [],
 		twos = [],
 		threes = [],
 		fours = [],
@@ -16,6 +15,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 		solutions = [],
 		usedBranch = {},
 		usedSolution = {};
+	let ones = [];
 
 	function BranchNode( firstNode, secondNode, operator ) {
 		this.firstNode = firstNode;
@@ -100,7 +100,7 @@ function solveNumbersGame( offeredNumbers, target ) {
 	};
 
 	function addBranchNode( firstNode, secondNode, targetArray, operator ) {
-		var newNode = new BranchNode( firstNode, secondNode, operator );
+		const newNode = new BranchNode( firstNode, secondNode, operator );
 		if ( newNode.result === firstNode.result || newNode.result === secondNode.result ) {
 			return;
 		}
@@ -112,9 +112,9 @@ function solveNumbersGame( offeredNumbers, target ) {
 	}
 
 	function createSubTree( firstNodeArray, secondNodeArray, targetArray, last ) {
-		var i, j, firstNode, secondNode,
-			firstLen = firstNodeArray.length,
+		const firstLen = firstNodeArray.length,
 			secondLen = secondNodeArray.length;
+		let i, j, firstNode, secondNode;
 		for ( i = 0; i < firstLen; i++ ) {
 			for ( j = 0; j < secondLen; j++ ) {
 				firstNode = firstNodeArray[ i ];

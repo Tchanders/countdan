@@ -1,6 +1,6 @@
 ( function () {
 
-	var Clock = function ( config ) {
+	const Clock = function ( config ) {
 		config = config || {};
 
 		this.startTime = null;
@@ -45,7 +45,7 @@
 	};
 
 	Clock.prototype.update = function () {
-		var time = Date.now() - this.startTime;
+		const time = Date.now() - this.startTime;
 
 		this.draw( time );
 
@@ -65,7 +65,7 @@
 		time = Math.min( time, this.duration );
 
 		// Calculate the angle, and the SVG path
-		var angle = this.angle * time / this.duration,
+		const angle = this.angle * time / this.duration,
 			r = ( angle * Math.PI / 180 ),
 			x = Math.sin( r ) * 125,
 			y = Math.cos( r ) * -125,

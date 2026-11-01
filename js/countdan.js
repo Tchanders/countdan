@@ -1,7 +1,7 @@
 window.Countdan = {};
 
-$( function () {
-	var games = {
+$( () => {
+	const games = {
 			'': { title: 'Letters game', rules: 'lettersgamerules.html', init: 'lettersGame' },
 			numbers: { title: 'Numbers game', rules: 'numbersgamerules.html', init: 'numbersGame' },
 			conundrum: { title: 'Conundrum', rules: 'conundrumrules.html', init: 'conundrum' }

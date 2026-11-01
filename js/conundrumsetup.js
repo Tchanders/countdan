@@ -1,11 +1,11 @@
 ( function () {
 	/* global wordlist */
-	var conundrum,
-		nines = [];
+	const nines = [];
+	let conundrum;
 
 	function init() {
-		var i,
-			$tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+		const $tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+		let i;
 
 		// Conundrums are nine-letter words with only one anagram
 		for ( i in wordlist ) {
@@ -41,7 +41,7 @@
 		// Generate a conundrum
 		conundrum = nines[ Math.floor( nines.length * Math.random() ) ];
 		// Shuffle the letters
-		var letters = shuffle( conundrum.split( '' ) );
+		const letters = shuffle( conundrum.split( '' ) );
 		// Place in the tiles
 		$( '.gamepage-tile' ).each( function ( j ) {
 			$( this ).text( letters[ j ].toUpperCase() );
@@ -50,18 +50,18 @@
 	}
 
 	function shuffle( array ) {
-		var counter = array.length;
+		let counter = array.length;
 
 		// While there are elements in the array
 		while ( counter > 0 ) {
 			// Pick a random index
-			var index = Math.floor( Math.random() * counter );
+			const index = Math.floor( Math.random() * counter );
 
 			// Decrease counter by 1
 			counter--;
 
 			// And swap the last element with it
-			var temp = array[ counter ];
+			const temp = array[ counter ];
 			array[ counter ] = array[ index ];
 			array[ index ] = temp;
 		}

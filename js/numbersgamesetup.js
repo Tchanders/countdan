@@ -1,14 +1,14 @@
 ( function () {
 	/* global solveNumbersGame */
-	var highNumbers = [ 100, 75, 50, 25 ],
-		lowNumbers = [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 ],
-		offeredNumbers,
+	const highNumbers = [ 100, 75, 50, 25 ],
+		lowNumbers = [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 ];
+	let offeredNumbers,
 		target,
 		solutions;
 
 	function init() {
-		var i,
-			$tilePanel = $( '<div>' ).addClass( 'tile-panel' ),
+		const $tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+		let i,
 			$setNumbers = $( [] );
 
 		for ( i = 0; i < 6; i++ ) {
@@ -44,7 +44,7 @@
 		Countdan.clock.reset();
 		$( '.gamepage-solutions' ).empty();
 		$( '.numbersgame-target' ).text( '\u00a0' );
-		for ( var i = 0; i < 6; i++ ) {
+		for ( let i = 0; i < 6; i++ ) {
 			$( '.number-' + i ).text( '\u00a0' );
 		}
 		$( '.setup-button' ).removeClass( 'button-disabled' );
@@ -60,11 +60,11 @@
 		}
 		$( '.setup-button' ).addClass( 'button-disabled' );
 		$( '.ingame-button' ).removeClass( 'button-disabled' );
-		var i, x,
-			highNumbersCopy = highNumbers.slice(),
+		const highNumbersCopy = highNumbers.slice(),
 			lowNumbersCopy = lowNumbers.slice(),
 			numberOfHighs = +$( this ).data( 'value' ),
 			numberOfLows = 6 - numberOfHighs;
+		let i, x;
 		offeredNumbers = [];
 		for ( i = 0; i < numberOfHighs; i++ ) {
 			x = Math.floor( Math.random() * highNumbersCopy.length );
@@ -81,7 +81,7 @@
 		}
 		target = Math.floor( Math.random() * 899 ) + 101;
 		$( '.numbersgame-target' ).text( target );
-		setTimeout( function () {
+		setTimeout( () => {
 			Countdan.clock.start();
 		}, 1000 );
 	}
@@ -92,7 +92,7 @@
 		if ( solutions.length === 0 ) {
 			$( '.gamepage-solutions' ).append( $( '<p>' ).text( 'No solutions found' ) );
 		} else {
-			for ( var i = 0; i < solutions.length; i++ ) {
+			for ( let i = 0; i < solutions.length; i++ ) {
 				$( '.gamepage-solutions' ).append( $( '<div>' ).text( solutions[ i ] ) );
 			}
 		}

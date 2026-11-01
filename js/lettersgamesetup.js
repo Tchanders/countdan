@@ -8,7 +8,7 @@
 	// K ×1
 	// J ×1, X ×1
 	// Q ×1, Z ×1
-	var MIN_LETTERS = 5,
+	const MIN_LETTERS = 5,
 		MAX_LETTERS = 9,
 		vowels = [
 			'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E',
@@ -39,15 +39,15 @@
 			'X',
 			'Q',
 			'Z'
-		],
-		vowelsCopy,
+		];
+	let vowelsCopy,
 		consonantsCopy,
 		tileCounter,
 		offeredLetters;
 
 	function init() {
-		var i,
-			$tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+		const $tilePanel = $( '<div>' ).addClass( 'tile-panel' );
+		let i;
 
 		for ( i = 0; i < MAX_LETTERS; i++ ) {
 			// Split the tiles over two rows
@@ -93,14 +93,14 @@
 
 	function chooseLetter() {
 		if ( tileCounter < MAX_LETTERS ) {
-			var letters;
+			let letters;
 			if ( $( this ).hasClass( 'lettersgame-choosevowel' ) ) {
 				// letters now refers to vowelsCopy
 				letters = vowelsCopy;
 			} else {
 				letters = consonantsCopy;
 			}
-			var x = Math.floor( Math.random() * letters.length );
+			const x = Math.floor( Math.random() * letters.length );
 			$( '.letter-' + tileCounter ).text( letters[ x ] );
 			offeredLetters.push( letters[ x ] );
 			letters.splice( x, 1 );
@@ -114,7 +114,7 @@
 			// NB setup buttons are not actually disabled, but they don't do anything
 			$( '.setup-button' ).addClass( 'button-disabled' );
 			$( '.ingame-button' ).removeClass( 'button-disabled' );
-			setTimeout( function () {
+			setTimeout( () => {
 				Countdan.clock.start();
 			}, 1000 );
 		}
@@ -122,15 +122,15 @@
 
 	function showSolutions() {
 		$( '.gamepage-solutions' ).empty();
-		var solutions = solveLettersGame( offeredLetters.join( '' ) );
+		const solutions = solveLettersGame( offeredLetters.join( '' ) );
 		if ( solutions.length === 0 ) {
 			$( '.gamepage-solutions' ).append( $( '<p>' ).text( 'No solutions found' ) );
 		} else {
-			for ( var i = MAX_LETTERS; i >= MIN_LETTERS; i-- ) {
+			for ( let i = MAX_LETTERS; i >= MIN_LETTERS; i-- ) {
 				if ( solutions[ i ] ) {
-					var subSolutions = solutions[ i ];
+					const subSolutions = solutions[ i ];
 					$( '.gamepage-solutions' ).append( $( '<h2>' ).text( i + ' letters' ) );
-					for ( var j = 0; j < subSolutions.length; j++ ) {
+					for ( let j = 0; j < subSolutions.length; j++ ) {
 						$( '.gamepage-solutions' ).append(
 							$( '<div>' ).append(
 								$( '<a>' )
