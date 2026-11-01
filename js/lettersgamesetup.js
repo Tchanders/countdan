@@ -114,9 +114,7 @@
 			// NB setup buttons are not actually disabled, but they don't do anything
 			$( '.setup-button' ).addClass( 'button-disabled' );
 			$( '.ingame-button' ).removeClass( 'button-disabled' );
-			setTimeout( () => {
-				Countdan.clock.start();
-			}, 1000 );
+			Countdan.clock.start( 1000 );
 		}
 	}
 

@@ -81,9 +81,7 @@
 		}
 		target = Math.floor( Math.random() * 899 ) + 101;
 		$( '.numbersgame-target' ).text( target );
-		setTimeout( () => {
-			Countdan.clock.start();
-		}, 1000 );
+		Countdan.clock.start( 1000 );
 	}
 
 	function showSolutions() {

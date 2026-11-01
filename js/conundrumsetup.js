@@ -8,9 +8,11 @@
 		let i;
 
 		// Conundrums are nine-letter words with only one anagram
-		for ( i in wordlist ) {
-			if ( i.length === 9 && wordlist[ i ].length === 1 ) {
-				nines.push( wordlist[ i ][ 0 ] );
+		if ( !nines.length ) {
+			for ( i in wordlist ) {
+				if ( i.length === 9 && wordlist[ i ].length === 1 ) {
+					nines.push( wordlist[ i ][ 0 ] );
+				}
 			}
 		}
 

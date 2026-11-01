@@ -29,9 +29,18 @@
 
 	};
 
-	Clock.prototype.start = function () {
+	/**
+	 * Start the clock
+	 *
+	 * @param {number} [delay] Milliseconds to wait before starting
+	 */
+	Clock.prototype.start = function ( delay ) {
 		if ( this.updateTimeout ) {
 			clearTimeout( this.updateTimeout );
+		}
+		if ( delay ) {
+			this.updateTimeout = setTimeout( this.start.bind( this ), delay );
+			return;
 		}
 		this.startTime = Date.now();
 		this.update();
