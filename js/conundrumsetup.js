@@ -24,8 +24,8 @@
 		}
 		answerRow = new Countdan.AnswerRow( $tilePanel.children() );
 		$( '.game-content' ).append(
-			$tilePanel,
 			$( '<div>' ).addClass( 'ingame-button gamepage-button conundrumgame-newgame' ).text( 'New conundrum' ),
+			$tilePanel,
 			answerRow.$element
 		);
 

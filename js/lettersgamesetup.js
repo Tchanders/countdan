@@ -64,11 +64,11 @@
 		}
 		answerRow = new Countdan.AnswerRow( $tilePanel.children() );
 		$( '.game-content' ).append(
-			$tilePanel,
 			'To start the game, choose how many vowels you want:',
 			$( '<br>' ),
 			$setVowels,
 			$( '<div>' ).addClass( 'ingame-button gamepage-button lettersgame-newgame button-disabled' ).text( 'Start again' ),
+			$tilePanel,
 			answerRow.$element
 		);
 
