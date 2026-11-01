@@ -1,23 +1,12 @@
 ( function () {
-	/* global wordlist */
-	const nines = [];
+	/* global conundrums */
 	let conundrum,
 		answerRow;
 
 	function init() {
 		const $tilePanel = $( '<div>' ).addClass( 'tile-panel tile-panel-letters' );
-		let i;
 
-		// Conundrums are nine-letter words with only one anagram
-		if ( !nines.length ) {
-			for ( i in wordlist ) {
-				if ( i.length === 9 && wordlist[ i ].length === 1 ) {
-					nines.push( wordlist[ i ][ 0 ] );
-				}
-			}
-		}
-
-		for ( i = 0; i < 9; i++ ) {
+		for ( let i = 0; i < 9; i++ ) {
 			$tilePanel.append(
 				$( '<div>' ).addClass( 'gamepage-tile letter-' + i )
 			);
@@ -40,7 +29,7 @@
 		$( '.gamepage-solutions' ).empty();
 
 		// Generate a conundrum
-		conundrum = nines[ Math.floor( nines.length * Math.random() ) ];
+		conundrum = conundrums[ Math.floor( conundrums.length * Math.random() ) ];
 		// Shuffle the letters
 		const letters = shuffle( conundrum.split( '' ) );
 		// Place in the tiles
