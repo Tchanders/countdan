@@ -1,5 +1,6 @@
 {
 	"scripts": {
+		"build": "php maintenance/build-letters.php",
 		"test": "eslint ."
 	},
 	"devDependencies": {
